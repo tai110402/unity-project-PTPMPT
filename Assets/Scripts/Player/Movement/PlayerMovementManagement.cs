@@ -45,12 +45,12 @@ public class PlayerMovementManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
     {
-        
+
     }
 
     private void OnRunStart(InputAction.CallbackContext context)

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerShield : MonoBehaviour
 {
-    //[SerializeField] private float _blockTime;
+    [SerializeField] private GameObject _shieldGameObject;
+    [SerializeField] private GameObject _shieldColliderGameObject;
 
     private Animator _playerAnimator;
 
@@ -20,10 +21,7 @@ public class PlayerShield : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -34,6 +32,21 @@ public class PlayerShield : MonoBehaviour
             if (skillArray[i].AnimationName.Contains("DefaultBlockSkill"))
             {
                 _blockSkill = skillArray[i];
+            }
+        }
+
+        if (_blockSkill != null)
+        {
+            for (int i = 0; i < _playerAnimator.layerCount; i++)
+            {
+                if (_playerAnimator.GetCurrentAnimatorStateInfo(i).IsName(_blockSkill.AnimationName))
+                {
+                    _shieldGameObject.SetActive(true);
+                }
+                else
+                {
+                    _shieldGameObject.SetActive(false);
+                }
             }
         }
     }
@@ -47,9 +60,23 @@ public class PlayerShield : MonoBehaviour
             blockStartTime = Time.time;
             for (int i = 0; i < _playerAnimator.layerCount; i++)
             {
-                _playerAnimator.CrossFade(blockSkill.AnimationName, 0f, i);
+                StartCoroutine(ShieldColliderControl());
+
+                blockStartTime = Time.time;
+                for (int i = 0; i < _playerAnimator.layerCount; i++)
+                {
+                    _playerAnimator.CrossFade(blockSkill.AnimationName, 0f, i);
+                }
             }
         }
         return blockStartTime;
+    }
+    IEnumerator ShieldColliderControl()
+    {
+        _shieldGameObject.SetActive(true);
+        _shieldColliderGameObject.SetActive(true);
+        yield return new WaitForSeconds(0.8f);
+        _shieldGameObject.SetActive(false);
+        _shieldColliderGameObject.SetActive(false);
     }
 }

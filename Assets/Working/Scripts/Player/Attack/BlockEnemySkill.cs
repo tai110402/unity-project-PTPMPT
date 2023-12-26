@@ -22,7 +22,7 @@ public class BlockEnemySkill : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("ok");
+           
             other.GetComponentInParent<Animator>().CrossFade("BlockedReaction", 0f);
         }
     }

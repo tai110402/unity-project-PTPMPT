@@ -51,6 +51,7 @@ public class PlayerWeaponManagement : MonoBehaviour
         _playerInputActions.AttackManagement.SecondSkill.started += OnSecondSkillStart;
         _playerInputActions.AttackManagement.ThirdSkill.started += OnThirdSkillStart;
         _playerInputActions.AttackManagement.BlockSkill.started += OnBlockSkillStart;
+        _playerInputActions.AttackManagement.Unequip.started += OnUnequipStart;
     }
 
     // Update is called once per frame
@@ -81,6 +82,40 @@ public class PlayerWeaponManagement : MonoBehaviour
             _playerSword.SetAnimatorLayer();
         }
     }
+
+    private void OnUnequipStart(InputAction.CallbackContext context)
+    {
+        _isUnequip = true;
+        _isAxeEquip = false;
+        _isSwordEquip = false;
+        for (int i = 1; i < _playerAnimator.layerCount; i++)
+        {
+            _playerAnimator.SetLayerWeight(i, 0);
+        }
+
+        StartCoroutine(DisplayNothing());
+    }
+
+    private void OnEquipAxeStart(InputAction.CallbackContext context)
+    {
+        _isUnequip = false;
+        _isAxeEquip = true;
+        _isSwordEquip = false;
+        _playerAxe.SetAnimatorLayer();
+
+        StartCoroutine(DisplayAxe());
+    }
+
+    private void OnEquipSwordStart(InputAction.CallbackContext context)
+    {
+        _isUnequip = false;
+        _isAxeEquip = false;
+        _isSwordEquip = true;
+        _playerSword.SetAnimatorLayer();
+
+        StartCoroutine(DisplaySword());
+    }
+
 
     private void OnNormalSkillStart(InputAction.CallbackContext context)
     {

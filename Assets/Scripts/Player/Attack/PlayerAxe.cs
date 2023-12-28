@@ -13,7 +13,6 @@ public class PlayerAxe : MonoBehaviour, IPlayerWeapon
     private Skill _firstSkill;
     private Skill _secondSkill;
     private Skill _thirdSkill;
-    private Skill _fourSkill_;
 
     public Skill FirstNormalSkill { set { _firstNormalSkill = value; } get { return _firstNormalSkill; } }
     public Skill SecondNormalSkill { set { _secondNormalSkill = value; } get { return _secondNormalSkill; } }
@@ -36,7 +35,6 @@ public class PlayerAxe : MonoBehaviour, IPlayerWeapon
 
     private void Awake()
     {
-        Debug.Log("abc ");
         _playerAnimator = GetComponent<Animator>();
     }
 

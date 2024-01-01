@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Working/Animations/Player/Attack/Sword Skill.meta
+guid: 474a17c70a6be8d4a89a240270bfb2fe
+=======
 guid: d3cf53d0f463e62458e924d71f53b55b
+>>>>>>> 2cc8b88034db2aabf4ccda1091db5aae4da7511d:Assets/Animations/Player/Attack/Sword Skill.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

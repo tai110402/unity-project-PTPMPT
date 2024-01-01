@@ -8,7 +8,6 @@ public class BlockEnemySkill : MonoBehaviour
     [SerializeField] private float _hitForce = 0.01f;
     [SerializeField] private float _duration = 0.5f;
     [SerializeField] private GameObject _playerGameObject;
-    private float grade = 0;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +15,7 @@ public class BlockEnemySkill : MonoBehaviour
         {
             if (other.CompareTag(_destroyGameObjectTagArray[i]))
             {
-                Debug.log("check");
+                
                 GameObject.Destroy(other.gameObject);
                 StartCoroutine(ApplyHitForce(_duration));
                 //GameObject.FindWithTag("Player").GetComponent<Animator>().CrossFade("BlockImpact", 0f, 1);
@@ -25,7 +24,7 @@ public class BlockEnemySkill : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            Debug.log("asdf");
+           
             other.GetComponentInParent<Animator>().CrossFade("BlockedReaction", 0f);
         }
     }
